@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>放假倒计时</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 粒子星空背景 Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <div class="main-container">
+        <div class="corner-accent top-left"></div>
+        <div class="corner-accent top-right"></div>
+        <div class="corner-accent bottom-left"></div>
+        <div class="corner-accent bottom-right"></div>
+
+        <div class="title-row">距离放假还有</div>
+
+        <div class="countdown-display">
+            <div class="countdown-digits" id="countdownDigits">
+                <span id="dd">00</span><span class="unit-label">天</span>
+                <span id="hh">00</span><span class="unit-label">小时</span>
+                <span id="mm">00</span><span class="unit-label">分</span>
+                <span id="ss">00</span><span class="unit-label">秒</span>
+            </div>
+        </div>
+
+        <div class="total-seconds">
+            总计&nbsp;<span class="sec-number" id="totalSeconds">0</span>&nbsp;秒
+        </div>
+
+        <div class="btn-group">
+            <button class="btn" id="btnFontFamily" title="切换显示字体风格">🔤 调整字体</button>
+            <button class="btn" id="btnFontSize" title="调整倒计时数字大小">🔍 调整字号</button>
+            <button class="btn set-time-btn" id="btnSetTime" title="设置或修改放假时间">📅 设置放假时间</button>
+        </div>
+    </div>
+
+    <!-- 设置时间模态框 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <div class="modal-title">📅 设置放假时间</div>
+            <div class="modal-section">
+                <label for="datetimePicker">🎯 选择放假日期与时间：</label>
+                <input type="datetime-local" id="datetimePicker">
+                <div class="hint">点击右侧日历图标可视化选择</div>
+            </div>
+            <div class="modal-section">
+                <label for="unixInput">🔢 或输入 Unix 时间戳（秒）：</label>
+                <input type="number" id="unixInput" placeholder="例如：1735689600">
+                <div class="hint">Unix 时间戳与日历会联动</div>
+            </div>
+            <div class="current-setting" id="currentSettingInfo"></div>
+            <div class="modal-btns">
+                <button class="btn confirm-btn" id="btnConfirm">✅ 确认设置</button>
+                <button class="btn cancel-btn" id="btnCancel">❌ 取消</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
